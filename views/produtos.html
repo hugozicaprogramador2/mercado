@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado - Produtos</title>
+    <link rel="stylesheet" href="/css/produtos.css">
+</head>
+<body>
+    <h1>Supermercado - Produtos</h1>
+    <div class="cart-icon" id="cartIcon">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+    <div class="product-container" id="productContainer">
+        <div class="product" data-name="Arroz 1kg" data-price="5000">
+            <img src="https://example.com/arroz.jpg" alt="Arroz 1kg">
+            <h2>Arroz 1kg</h2>
+            <p>Preço: R$ 50,00</p>
+            <button class="pay-button">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product" data-name="Feijão 1kg" data-price="7000">
+            <img src="https://example.com/feijao.jpg" alt="Feijão 1kg">
+            <h2>Feijão 1kg</h2>
+            <p>Preço: R$ 70,00</p>
+            <button class="pay-button">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product" data-name="Açúcar 1kg" data-price="4000">
+            <img src="https://example.com/acucar.jpg" alt="Açúcar 1kg">
+            <h2>Açúcar 1kg</h2>
+            <p>Preço: R$ 40,00</p>
+            <button class="pay-button">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product" data-name="Macarrão 500g" data-price="3000">
+            <img src="https://example.com/macarrao.jpg" alt="Macarrão 500g">
+            <h2>Macarrão 500g</h2>
+            <p>Preço: R$ 30,00</p>
+            <button class="pay-button">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+
+<!-- Modal para visualizar o carrinho -->
+<div class="modal" id="cartModal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Carrinho</h2>
+        <div id="cartItemsContainer"></div>
+        <div class="modal-footer">
+            <button id="checkoutButton">Ir para o Checkout</button>
+        </div>
+    </div>
+</div>
+
+
+
+    <script src="/script.js"></script>
+</body>
+</html>
