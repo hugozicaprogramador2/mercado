@@ -1,0 +1,124 @@
+/* Estilos Gerais da Seção de Sorteio */
+.sorteio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    background-color: white;
+    border-radius: 12px;
+    margin-top: 40px;
+}
+
+
+/* Estilo da Coluna de Texto */
+.sorteio-texto {
+    width: 50%;
+    padding-right: 20px;
+}
+
+.sorteio-texto h2 {
+    font-size: 2.4rem;
+    color: #004080;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sorteio-texto p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.sorteio-texto strong {
+    color: #cc0000;
+}
+
+.botao-participar {
+    background-color: #cc0000;
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(204, 0, 0, 0.3);
+}
+
+.botao-participar:hover {
+    background-color: #990000;
+    transform: scale(1.05);
+}
+
+/* Estilo da Coluna de Imagem */
+.sorteio-imagem {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sorteio-imagem img {
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .carousel-inner{
+        display: none;
+    }
+    .sorteio {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .sorteio-texto,
+    .sorteio-imagem {
+        width: 100%;
+    }
+
+    .sorteio-texto {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .sorteio-texto h2 {
+        font-size: 2rem;
+    }
+
+    .sorteio-texto p {
+        font-size: 1rem;
+    }
+
+    .botao-participar {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .sorteio-imagem img {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sorteio-texto h2 {
+        font-size: 1.8rem;
+    }
+
+    .sorteio-texto p {
+        font-size: 0.9rem;
+    }
+
+    .botao-participar {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .sorteio-imagem img {
+        max-width: 250px;
+    }
+}

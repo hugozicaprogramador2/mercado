@@ -1,80 +1,158 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
-}
 
-h1 {
+/* Estilos Gerais */
+.section-title {
+    font-size: 2.4rem; /* Tamanho do título aumentado */
+    color: #004080; /* Azul profundo */
     text-align: center;
-    margin-bottom: 20px;
+    margin: 40px 0; /* Margens generosas */
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase; /* Deixa o título em letras maiúsculas */
+    border-bottom: 2px solid #cc0000; /* Linha abaixo do título para destaque */
+    padding-bottom: 10px; /* Espaçamento interno na parte inferior */
 }
 
-.product-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cartões por linha */
-    gap: 20px; /* Espaço entre os cartões */
-    margin-bottom: 20px;
-}
-
-.product {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.2s;
-}
-
-.product:hover {
-    transform: scale(1.05);
-}
-
-.product img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.pay-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.pay-button:hover {
-    background-color: #218838;
-}
-
+/* Ícone do Carrinho */
 .cart-icon {
     position: relative;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 28px;
+    color: #004080;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px auto;
-}
+    margin: 20px auto 30px auto; /* Espaçamento acima e abaixo */
+    padding: 10px 15px; /* Espaçamento ao redor do ícone */
+    background: #f9f9f9; /* Fundo claro */
 
-.cart-count {
-    background: red;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    position: absolute;
-    top: -10px;
-    right: -10px;
+    
+   
+
 }
 
 
+/* Estilo da Etiqueta de Destaque */
+.highlight-badge {
+    background-color: #004080; /* Azul para o selo */
+    color: white; /* Cor do texto em branco */
+    font-size: 0.7rem; /* Tamanho da fonte reduzido */
+    font-weight: bold; /* Negrito */
+    padding: 3px 8px; /* Espaçamento ao redor do texto reduzido */
+    border-radius: 15px; /* Bordas arredondadas */
+    position: absolute; /* Posiciona em relação ao card */
+    top: 10px; /* Distância do topo do card */
+    left: 10px; /* Distância da esquerda do card */
+    z-index: 10; /* Garante que fique acima de outros elementos */
+}
+
+/* Modificações nos Produtos para garantir que o selo fique visível */
+.product {
+    position: relative; /* Permite que a etiqueta seja posicionada dentro do card */
+    overflow: hidden; /* Garante que nada saia do card */
+}
 
 
+/* Container de Produtos */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsivo para diferentes tamanhos */
+    gap: 20px; /* Espaçamento entre os produtos */
+    padding: 0 20px; /* Espaçamento lateral */
+}
+
+/* Cartões de Produto */
+.product {
+    background-color: #f9f9f9; /* Fundo claro */
+    border: 1px solid #ddd; /* Borda sutil */
+    border-radius: 12px; /* Bordas arredondadas */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 20px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animações suaves */
+}
+
+.product:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+}
+
+/* Imagem do Produto */
+.product img {
+    max-width: 100%; /* Largura máxima da imagem */
+    height: auto; /* Altura automática para manter a proporção */
+    border-radius: 10px; /* Bordas arredondadas na imagem */
+    margin-bottom: 15px; /* Espaçamento abaixo da imagem */
+}
+
+/* Título do Produto */
+.product h2 {
+    font-size: 1.6rem; /* Tamanho do título aumentado */
+    color: #333; /* Cor do texto */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    font-weight: 600; /* Peso do texto */
+}
+
+/* Preço do Produto */
+.product .price {
+    font-size: 1.2rem; /* Tamanho do preço */
+    color: #004080; /* Cor azul para o preço */
+    font-weight: bold; /* Destaca o preço */
+    margin-bottom: 15px; /* Espaçamento abaixo do preço */
+}
+
+/* Botão de Adicionar ao Carrinho */
+.pay-button {
+    background-color: #cc0000; /* Vermelho para o botão */
+    color: white; /* Cor do texto */
+    border: none; /* Sem borda */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 12px 20px; /* Espaçamento interno do botão */
+    cursor: pointer; /* Cursor em forma de ponteiro */
+    font-size: 1rem; /* Tamanho da fonte do botão */
+    font-weight: bold; /* Destaca o texto do botão */
+    transition: background-color 0.3s, transform 0.2s; /* Animações suaves */
+    box-shadow: 0 4px 12px rgba(204, 0, 0, 0.3); /* Sombra suave */
+}
+
+.pay-button:hover {
+    background-color: #990000; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+/* Responsividade para Dispositivos Menores */
+@media (max-width: 768px) {
+    .product-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta o layout em telas menores */
+    }
+
+    .pay-button {
+        padding: 10px 15px; /* Ajusta o espaçamento do botão */
+        font-size: 0.9rem; /* Tamanho da fonte do botão */
+    }
+
+    .product h2 {
+        font-size: 1.4rem; /* Tamanho do título do produto */
+    }
+}
+
+@media (max-width: 480px) {
+    .pay-button {
+        padding: 8px 10px; /* Ajusta o espaçamento do botão */
+        font-size: 0.85rem; /* Tamanho da fonte do botão */
+    }
+
+    .product h2 {
+        font-size: 1.2rem; /* Tamanho do título do produto */
+    }
+
+    .cart-icon {
+        font-size: 26px; /* Tamanho do ícone do carrinho */
+    }
+
+    .section-title {
+        font-size: 2rem; /* Tamanho do título em telas pequenas */
+    }
+}
 
 
 /*modal*/
@@ -123,9 +201,6 @@ button {
     transition: background-color 0.3s; /* Transição suave */
 }
 
-button:hover {
-    background-color: #c82333; /* Vermelho escuro no hover */
-}
 
 .close {
     color: #dc3545; /* Vermelho para o botão fechar */
