@@ -1,0 +1,276 @@
+/* Seção de Depoimentos */
+.testimonials-section {
+    padding: 60px 20px;
+    background-color: white;
+    text-align: center;
+  }
+  
+  .testimonials-section h2 {
+    color: #003366;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Contêiner de Slider */
+  .testimonials-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .testimonials-slider {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .testimonial {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .testimonial.active {
+    display: block;
+  }
+  
+  .testimonial p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .stars {
+    color: #ffcc00;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  
+  .client-name {
+    color: #cc0000;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
+  .date {
+    color: #777;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
+  /* Estilo da Foto de Perfil */
+  .profile-pic {
+    width: 60px; /* Largura da foto */
+    height: 60px; /* Altura da foto */
+    border-radius: 50%; /* Para deixar redonda */
+    margin-bottom: 10px; /* Espaço abaixo da imagem */
+    object-fit: cover; /* Para manter a proporção da imagem */
+  }
+  
+  /* Botões de Navegação */
+  .nav-button {
+    background-color: #cc0000; /* Cor vermelha do botão */
+    border: none;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color 0.3s;
+    z-index: 1; /* Garante que as setas fiquem acima do conteúdo */
+  }
+  
+  .nav-button:hover {
+    background-color: #990000;
+  }
+  
+  .prev {
+    left: 10px; /* Ajuste para puxar a seta para dentro do contêiner */
+  }
+  
+  .next {
+    right: 10px; /* Ajuste para puxar a seta para dentro do contêiner */
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .testimonials-section h2 {
+      font-size: 2rem;
+    }
+  
+    .testimonial p {
+      font-size: 1rem;
+    }
+  
+    .nav-button {
+      padding: 8px;
+      font-size: 1.2rem;
+    }
+  
+    .profile-pic {
+      width: 50px; /* Largura da foto para telas menores */
+      height: 50px; /* Altura da foto para telas menores */
+    }
+  
+    .date {
+      font-size: 0.8rem; /* Diminuir tamanho da fonte da data */
+    }
+  }
+  
+
+ 
+/* Container Geral */
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  /* Coluna Esquerda com Imagem */
+  .left-column {
+    flex: 1; /* Toma um espaço igual ao da coluna direita */
+    margin-right: 20px; /* Espaço entre as colunas */
+  }
+  
+  .promotion-img {
+    width: 100%; /* Largura total da coluna */
+    height: auto; /* Manter proporção */
+    border-radius: 8px;
+
+  }
+  
+  /* Coluna Direita */
+  .right-column {
+    flex: 2; /* Toma o dobro do espaço da coluna esquerda */
+  }
+  
+  /* Seção de Depoimentos */
+  .testimonials-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    text-align: center;
+  }
+  
+  .testimonials-section h2 {
+    color: #003366;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Contêiner de Slider */
+  .testimonials-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #cc0000; /* Borda vermelha */
+    border-radius: 8px;
+    background-color: #fff; /* Fundo branco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Slider de Depoimentos */
+  .testimonials-slider {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .testimonial {
+    display: none;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .testimonial.active {
+    display: block;
+  }
+  
+  .testimonial p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .stars {
+    color: #ffcc00;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  
+  .client-name {
+    color: #cc0000;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
+  .date {
+    color: #777;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
+  /* Estilo da Foto de Perfil */
+  .profile-pic {
+    width: 60px; /* Largura da foto */
+    height: 60px; /* Altura da foto */
+    border-radius: 50%; /* Para deixar redonda */
+    margin-bottom: 10px; /* Espaço abaixo da imagem */
+    object-fit: cover; /* Para manter a proporção da imagem */
+  }
+  
+  /* Botões de Navegação */
+  .nav-button {
+    background-color: #cc0000; /* Cor vermelha do botão */
+    border: none;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color 0.3s;
+    z-index: 1; /* Garante que as setas fiquem acima do conteúdo */
+  }
+  
+  .nav-button:hover {
+    background-color: #990000;
+  }
+  
+  .prev {
+    left: 10px; /* Ajuste para puxar a seta para dentro do contêiner */
+  }
+  
+  .next {
+    right: 10px; /* Ajuste para puxar a seta para dentro do contêiner */
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .content-container {
+      flex-direction: column; /* Colapsa as colunas em telas menores */
+    }
+    
+    .left-column {
+      margin-right: 0; /* Remove margem direita */
+      margin-bottom: 20px; /* Espaço entre colunas */
+    }
+    
+    .testimonials-container {
+      width: 100%; /* Largura total em telas pequenas */
+    }
+
+    .left-column{
+        display: none;
+    }
+  }
+  

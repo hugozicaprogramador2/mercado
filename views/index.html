@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/depoimento.css">
+    <link rel="stylesheet" href="/css/blog.css">
     <link rel="stylesheet" href="/css/sorteio.css">
     <link rel="stylesheet" href="/css/produtos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -70,7 +72,7 @@
         <!--sorteio-->
           <section class="sorteio">
             <div class="sorteio-texto">
-                <h2>Participe do Nosso Sorteio!</h2>
+                <h2 class="section-title">Participe do Nosso Sorteio!</h2>
                 <p>
                     Estamos sorteando um <strong>carro zero quilômetro!</strong> 
                     Aproveite essa chance incrível de levar para casa um novo carro!
@@ -125,6 +127,38 @@
         <button class="pay-button">Adicionar ao Carrinho</button>
     </div>
 
+    <div class="product" data-name="Macarrão 500g" data-price="3000">
+        <span class="highlight-badge">Destaque</span> <!-- Selo de Destaque -->
+        <img src="/img/espaguete.png" alt="Macarrão 500g">
+        <h2>Macarrão 500g</h2>
+        <p class="price">R$ 11,00</p>
+        <button class="pay-button">Adicionar ao Carrinho</button>
+    </div>
+
+    <div class="product" data-name="Macarrão 500g" data-price="3000">
+        <span class="highlight-badge">Destaque</span> <!-- Selo de Destaque -->
+        <img src="/img/espaguete.png" alt="Macarrão 500g">
+        <h2>Macarrão 500g</h2>
+        <p class="price">R$ 11,00</p>
+        <button class="pay-button">Adicionar ao Carrinho</button>
+    </div>
+
+    <div class="product" data-name="Macarrão 500g" data-price="3000">
+        <span class="highlight-badge">Destaque</span> <!-- Selo de Destaque -->
+        <img src="/img/espaguete.png" alt="Macarrão 500g">
+        <h2>Macarrão 500g</h2>
+        <p class="price">R$ 11,00</p>
+        <button class="pay-button">Adicionar ao Carrinho</button>
+    </div>
+
+    <div class="product" data-name="Macarrão 500g" data-price="3000">
+        <span class="highlight-badge">Destaque</span> <!-- Selo de Destaque -->
+        <img src="/img/espaguete.png" alt="Macarrão 500g">
+        <h2>Macarrão 500g</h2>
+        <p class="price">R$ 11,00</p>
+        <button class="pay-button">Adicionar ao Carrinho</button>
+    </div>
+
 </div>
 
 
@@ -140,6 +174,104 @@
 </div>
 </div>
 <!--produtos em destaque-->
+
+
+
+ <!-- Seção de Blog -->
+ <section class="blog-section">
+    <h2>Novidades do Blog</h2>
+    <p class="subtitle">Confira as últimas dicas e novidades do Supermercado Nativa!</p>
+    
+    <div class="blog-cards">
+      <div class="blog-card">
+        <img src="/img/blog1.png" alt="Imagem do artigo 1">
+        <h3>10 Receitas Saudáveis para o Verão</h3>
+        <p>Descubra receitas frescas e saudáveis para os dias quentes, usando produtos frescos e locais do Nativa!</p>
+        <a href="#" class="read-more">Leia mais</a>
+      </div>
+
+      <div class="blog-card">
+        <img src="/img/blg2.jpg" alt="Imagem do artigo 2">
+        <h3>Dicas para Economizar nas Compras</h3>
+        <p>Aqui estão algumas dicas de economia para aproveitar as melhores ofertas do Nativa e fazer suas compras renderem mais.</p>
+        <a href="#" class="read-more">Leia mais</a>
+      </div>
+
+      <div class="blog-card">
+        <img src="/img/blog3.jpg" alt="Imagem do artigo 3">
+        <h3>Alimentos Orgânicos: Benefícios para a Saúde</h3>
+        <p>Saiba mais sobre os benefícios dos alimentos orgânicos para a sua saúde e conheça nossas opções no Nativa.</p>
+        <a href="#" class="read-more">Leia mais</a>
+      </div>
+    </div>
+  </section>
+ <!-- Seção de Blog -->
+
+
+ <!-- Seção de Depoimentos -->
+
+
+<section class="testimonials-section">
+    <div class="content-container">
+      
+      <!-- Lado Esquerdo com Imagem -->
+      <div class="left-column">
+        <img src="/img/boneco.png" alt="Promoção" class="promotion-img">
+      </div>
+  
+      <!-- Lado Direito com Depoimentos -->
+      <div class="right-column">
+        <h2>O que nossos clientes dizem</h2>
+        
+        <div class="testimonials-container">
+          <!-- Botão Anterior -->
+          <button class="nav-button prev" onclick="showPreviousSlide()">&#10094;</button>
+          
+          <!-- Slider de Depoimentos -->
+          <div class="testimonials-slider">
+            
+            <div class="testimonial active">
+              <img src="/img/usuario1.jpg" alt="Maria Oliveira" class="profile-pic">
+              <p>"Excelente atendimento e produtos frescos! A equipe é sempre prestativa e o ambiente é agradável."</p>
+              <div class="stars">★★★★★</div>
+              <p class="client-name">— Maria Oliveira</p>
+              <p class="date">Data: 10/10/2024</p>
+            </div>
+  
+            <div class="testimonial">
+              <img src="/img/usuario2.jpg" alt="João Silva" class="profile-pic">
+              <p>"Encontro sempre ótimos preços e uma variedade incrível de produtos orgânicos. Recomendo muito!"</p>
+              <div class="stars">★★★★★</div>
+              <p class="client-name">— João Silva</p>
+              <p class="date">Data: 12/10/2024</p>
+            </div>
+  
+            <div class="testimonial">
+              <img src="/img/usuario3.jpg" alt="Ana Costa" class="profile-pic">
+              <p>"A melhor padaria da cidade! Os pães são sempre fresquinhos e deliciosos. Nota 10!"</p>
+              <div class="stars">★★★★★</div>
+              <p class="client-name">— Ana Costa</p>
+              <p class="date">Data: 15/10/2024</p>
+            </div>
+  
+            <div class="testimonial">
+                <img src="/img/usuario4.jpg" alt="Rafael Mendes" class="profile-pic">
+                <p>"Adoro fazer compras aqui! O aplicativo é muito fácil de usar e sempre tem promoções incríveis. O atendimento online é rápido e eficiente!"</p>
+                <div class="stars">★★★★★</div>
+                <p class="client-name">— Rafaela Mendes</p>
+                <p class="date">Data: 20/10/2024</p>
+            </div>
+            
+          </div>
+  
+          <!-- Botão Próximo -->
+          <button class="nav-button next" onclick="showNextSlide()">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
 
 
        
@@ -159,6 +291,7 @@
 
   
     <script src="/scripts/index.js"></script>
+    <script src="/scripts/depoimento.js"></script>
     <script src="/scripts/swiper.js"></script>
     <script src="/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
