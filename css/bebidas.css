@@ -1,0 +1,74 @@
+.highlight-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: transparent;
+    max-width: 900px; /* Aumentar a largura máxima da seção para um visual mais amplo */
+    width: 90%; /* Ajuste para responsividade */
+    padding: 30px; /* Aumentar padding para um efeito mais espaçoso */
+    gap: 30px; /* Aumentar o espaço entre imagem e conteúdo */
+    margin: auto; /* Centraliza a div na tela */
+
+  }
+  
+  .highlight-section img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px; /* Aumentar as bordas arredondadas da imagem */
+  }
+  
+  .highlight-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px; /* Aumenta o padding interno para o conteúdo */
+  }
+  
+  .highlight-content h2 {
+    color: #a0522d;
+    font-size: 30px; /* Aumentado para dar mais destaque */
+    font-weight: bold;
+    margin-bottom: 10px; /* Menos espaço abaixo do título */
+  }
+  
+  .highlight-content p {
+    color: #555;
+    font-size: 18px; /* Texto mais destacado */
+    margin-bottom: 20px;
+    line-height: 1.6; /* Aumentar o espaçamento entre linhas para melhor legibilidade */
+  }
+  
+  .highlight-content button {
+    padding: 12px 24px;
+    background-color: #a0522d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: start;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve no botão */
+  }
+  
+  .highlight-content button:hover {
+    background-color: #8b4513; /* Cor do botão ao passar o mouse */
+  }
+  
+  /* Responsivo para telas menores */
+  @media (max-width: 768px) {
+    .highlight-section {
+      grid-template-columns: 1fr; /* Uma coluna em telas menores */
+      text-align: center; /* Centraliza o texto */
+      padding: 20px; /* Menos padding em telas menores */
+    }
+  
+    .highlight-content button {
+      align-self: center; /* Centraliza o botão */
+    }
+  
+    #carouselExampleAutoplaying {
+      display: none; /* Oculta o carrossel */
+    }
+  }
+  

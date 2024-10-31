@@ -1,0 +1,99 @@
+/* Reset básico e estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+ html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
+    background-image: url('/img/fundo\ cadastro.jpeg'); /* Adicionando a imagem de fundo */
+  }
+  
+  /* Container do formulário */
+  .container {
+    width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Título e descrição */
+  .container h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #c8102e; /* Vermelho para o título */
+    margin-bottom: 10px;
+  }
+  
+  .container p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Campo de entrada */
+  input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #007bff; /* Azul para bordas dos campos */
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #c8102e; /* Vermelho ao focar */
+    box-shadow: 0 0 5px rgba(200, 16, 46, 0.3);
+  }
+  
+  /* Botões */
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+   
+  }
+  a{
+    text-decoration: none;
+  }
+  
+  /* Botão Cancelar */
+  button.cancel {
+    background-color: #e0e0e0;
+    color: #333;
+  }
+  
+  /* Botão Pesquisar */
+  button.search {
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+  }
+  
+  button.cancel:hover {
+    background-color: #d0d0d0;
+  }
+  
+  button.search:hover {
+    background-color: #0056b3;
+  }
+  

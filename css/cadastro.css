@@ -1,0 +1,113 @@
+/* Reset básico e estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Fonte atualizada */
+  }
+  
+  html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/img/fundo\ cadastro.jpeg'); /* Adicionando a imagem de fundo */
+    background-size: cover; /* Cobre toda a área */
+    background-position: center; /* Centraliza a imagem */
+  }
+  
+  /* Container do formulário */
+  .container {
+    width: 450px; /* Largura do container */
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.9); /* Fundo branco com leve transparência */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Logo */
+  .logo {
+    margin-bottom: 20px;
+  }
+  
+  .logo img {
+    width: 150px; /* Tamanho da imagem do logo */
+    height: auto; /* Mantém a proporção da imagem */
+  }
+  
+  /* Título */
+  .container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #c8102e; /* Vermelho para o título */
+  }
+  
+  /* Campos de formulário */
+  label {
+    display: block;
+    margin: 15px 0 5px;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #007bff; /* Azul para as bordas dos campos */
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #c8102e; /* Vermelho ao focar */
+    box-shadow: 0 0 5px rgba(200, 16, 46, 0.3);
+  }
+  
+  /* Botão de cadastro */
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff; /* Azul para o botão */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+  }
+  
+  button[type="submit"]:active {
+    transform: scale(0.98);
+  }
+  
+  /* Links para login e recuperação de senha */
+  .links {
+    margin-top: 15px;
+  }
+  
+  .links a {
+    display: inline-block;
+    color: #007bff; /* Azul para os links */
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 8px;
+    transition: color 0.3s;
+  }
+  
+  .links a:hover {
+    color: #c8102e; /* Vermelho ao passar o mouse */
+  }
+  
+  .links a:active {
+    text-decoration: underline;
+  }
+  
