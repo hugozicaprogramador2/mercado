@@ -7,6 +7,178 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Header Mercado</title>
 </head>
+<style>
+/* Estilo Principal do Card */
+.product {
+    background-color: #f9f9f9; /* Fundo claro */
+    border: 1px solid #ddd; /* Borda sutil */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    padding: 18px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animações suaves */
+    position: relative; /* Para posicionar elementos */
+    overflow: hidden; /* Garante que o conteúdo fique dentro do card */
+    width: 240px; /* Largura ajustada */
+}
+
+/* Etiqueta de Destaque */
+.highlight-badge {
+    background-color: #004080; /* Azul para o selo */
+    color: white; /* Cor do texto em branco */
+    font-size: 0.75rem; /* Tamanho da fonte ajustado */
+    font-weight: bold; /* Negrito */
+    padding: 4px 10px; /* Espaçamento ao redor do texto */
+    border-radius: 12px; /* Bordas arredondadas */
+    position: absolute; /* Posiciona em relação ao card */
+    top: 10px; /* Distância do topo do card */
+    left: 10px; /* Distância da esquerda do card */
+    z-index: 10; /* Garante que fique acima de outros elementos */
+}
+
+/* Container de Produtos */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsivo para diferentes tamanhos */
+    gap: 18px; /* Espaçamento entre os produtos */
+    padding: 0 20px; /* Espaçamento lateral */
+}
+
+/* Imagem do Produto */
+.product img {
+    max-width: 95%; /* Largura máxima da imagem */
+    height: auto; /* Mantém a proporção */
+    border-radius: 10px; /* Bordas arredondadas */
+    margin-bottom: 12px; /* Espaçamento abaixo da imagem */
+}
+
+/* Título do Produto */
+.product h2 {
+    font-size: 1.5rem; /* Tamanho do título ajustado */
+    color: #333; /* Cor do texto */
+    margin-bottom: 8px; /* Espaçamento abaixo do título */
+    font-weight: 600; /* Peso do texto */
+}
+
+/* Preço do Produto */
+.product .price {
+    font-size: 1.1rem; /* Tamanho do preço */
+    color: #004080; /* Cor azul para o preço */
+    font-weight: bold; /* Destaca o preço */
+    margin-bottom: 12px; /* Espaçamento abaixo do preço */
+}
+
+/* Botão de Adicionar ao Carrinho */
+.pay-button {
+    background-color: #cc0000; /* Vermelho para o botão */
+    color: white; /* Cor do texto */
+    border: none; /* Sem borda */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 10px 18px; /* Espaçamento interno do botão */
+    cursor: pointer; /* Cursor em forma de ponteiro */
+    font-size: 1rem; /* Tamanho da fonte do botão */
+    font-weight: bold; /* Destaca o texto do botão */
+    transition: background-color 0.3s, transform 0.2s; /* Animações suaves */
+    box-shadow: 0 4px 10px rgba(204, 0, 0, 0.3); /* Sombra suave */
+}
+
+.pay-button:hover {
+    background-color: #990000; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.04); /* Efeito de zoom leve ao passar o mouse */
+}
+
+
+
+.remove-button {
+    background-color: transparent; /* Fundo transparente */
+    color: #dc3545; /* Vermelho */
+    border: none; /* Sem borda */
+    cursor: pointer; /* Muda o cursor */
+    font-size: 14px; /* Tamanho da fonte */
+    text-decoration: underline; /* Sublinhado */
+}
+
+.remove-button:hover {
+    color: #c82333; /* Vermelho escuro no hover */
+}
+
+/*modal*/
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed; /* Fica em cima da tela */
+    z-index: 1000; /* Fica acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total da tela */
+    height: 100%; /* Altura total da tela */
+    overflow: auto; /* Rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro com opacidade */
+}
+
+.modal-content {
+    background-color: #ffffff; /* Fundo branco */
+    margin: 15% auto; /* Centraliza o modal */
+    padding: 20px; /* Preenchimento */
+    border: 1px solid #ddd; /* Borda leve */
+    border-radius: 8px; /* Bordas arredondadas */
+    width: 80%; /* Largura do modal */
+    max-width: 500px; /* Largura máxima do modal */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+h2 {
+    color: #007BFF; /* Azul */
+    text-align: center; /* Centraliza o texto */
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between; /* Espaço entre os botões */
+    margin-top: 20px;
+}
+
+button {
+    background-color: #dc3545; /* Vermelho */
+    color: white; /* Texto branco */
+    border: none; /* Remove borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px 15px; /* Preenchimento */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Muda o cursor */
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+
+.close {
+    color: #dc3545; /* Vermelho para o botão fechar */
+    float: right; /* Alinha à direita */
+    font-size: 28px; /* Tamanho do botão fechar */
+    font-weight: bold; /* Negrito */
+    cursor: pointer; /* Muda o cursor */
+}
+
+.close:hover {
+    color: #c82333; /* Vermelho escuro no hover */
+}
+/*modal*/
+
+
+/* Ícone do Carrinho */
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 28px;
+    color: #ff0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 30px auto; /* Espaçamento acima e abaixo */
+    padding: 10px 15px; /* Espaçamento ao redor do ícone */
+    background: #ffffff; /* Fundo claro */
+}
+
+
+</style>
 <body>
     <header class="header">
         <div class="header-top">
@@ -32,11 +204,69 @@
                 <a href="/views/temperos.html">Essenciais em Pó</a>
                 <a href="/views/derivados.html">Laticínios e Derivados</a>
                 <a href="/views/infantil.html">Infantil</a>
-               
             </div>
         </div>
+        <br><br>
+
+        <div class="main-content" id="main-content">
+
+            <div class="cart-icon" id="cartIcon">
+                🛒 <span class="cart-count" id="cartCount">0</span>
+            </div>
+            
+            <br>
+            <h2>Lista de Produtos</h2>
+            <div class="product-container" id="productList"></div>
+
+
+            <!-- Modal para visualizar o carrinho -->
+<div class="modal" id="cartModal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Carrinho</h2>
+        <div id="cartItemsContainer"></div>
+        <div class="modal-footer">
+            <button id="checkoutButton">Ir para o Checkout</button>
+        </div>
+    </div>
+    </div>
+    
+        </div>
+
+
+        <script>
+           // Recupera os produtos armazenados no localStorage
+// Defina o valor em centavos para o atributo data-price
+const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
+const productList = document.getElementById('productList');
+
+storedProducts.forEach(product => {
+    const productImage = product.image || '/img/espaguete.png';
+    const priceInCents = Math.round(product.price * 100); // Converte reais para centavos
+
+    const productDiv = document.createElement('div');
+    productDiv.className = 'product';
+    productDiv.setAttribute('data-name', product.name);
+    productDiv.setAttribute('data-price', priceInCents); // Agora em centavos
+
+    productDiv.innerHTML = `
+        <span class="highlight-badge">Destaque</span>
+        <img src="${productImage}" alt="${product.name}">
+        <h2>${product.name}</h2>
+        <p class="price">R$ ${product.price.toFixed(2)}</p>
+        <button class="pay-button">Adicionar ao Carrinho</button>
+    `;
+
+    productList.appendChild(productDiv);
+});
+
+
+        </script>
+        
         
     </header>
     <script src="/scripts/index.js"></script>
+    <script src="/script.js"></script>
+
 </body>
 </html>

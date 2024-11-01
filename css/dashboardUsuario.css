@@ -1,0 +1,139 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha o conteúdo no topo */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 0; /* Espaçamento no topo e na parte inferior */
+    background: url('/img/fundo\ cadastro.jpeg') no-repeat center center fixed; /* Substitua o URL pela URL da sua imagem de fundo */
+    background-size: cover;
+    overflow-y: auto; /* Garante a rolagem vertical quando necessário */
+  }
+  
+  .container {
+    background-color: rgba(255, 255, 255, 0.85); /* Fundo branco semitransparente */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 600px;
+    margin-top: 20px; /* Adiciona espaço extra na parte superior */
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .profile-pic {
+    margin-bottom: 20px;
+  }
+  
+  .profile-pic img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .change-photo {
+    color: #007bff;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: underline;
+  }
+  
+  .change-photo:hover {
+    text-decoration: none;
+  }
+  
+  form {
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  form h3 {
+    color: #555;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  form input,
+  form button {
+    width: 100%;
+    padding: 15px; /* Aumenta o espaço interno dos campos */
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Garante que padding não afeta a largura */
+  }
+  
+
+  form input {
+    border-color: #007bff; /* Contorno azul nos campos de entrada */
+  }
+  
+  form button {
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  form button:hover {
+    background-color: #d43f3f;
+  }
+   /* Botão de cadastro */
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff; /* Azul para o botão */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+  }
+  
+  button[type="submit"]:active {
+    transform: scale(0.98);
+  }
+  
+  /* Links para login e recuperação de senha */
+  .links {
+    margin-top: 15px;
+  }
+  
+  .links a {
+    display: inline-block;
+    color: #007bff; /* Azul para os links */
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 8px;
+    transition: color 0.3s;
+  }
+  
+  .links a:hover {
+    color: #c8102e; /* Vermelho ao passar o mouse */
+  }
+  
+  .links a:active {
+    text-decoration: underline;
+  }
+
+  
+ 

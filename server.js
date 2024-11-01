@@ -2,11 +2,37 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Stripe = require('stripe');
 const path = require('path');
+const mysql = require('mysql2'); // Adiciona o pacote mysql2
+const { cadastrarUsuario } = require('./cadastro'); // Certifique-se que o caminho está correto
+
 const stripe = Stripe('sk_test_51QDOmoHkxHLashFy55RFxo2mL2rtoerTwmNlEAHlXzgIKnqkL27DzQjH2Wg9B4gDcGtUixjhV1PjV6wvkWlPposO00BxUtGmP3'); // Substitua pela sua chave secreta de teste
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
-app.use(express.static(__dirname));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname)); // Serve arquivos estáticos do diretório atual
+app.use('/css', express.static(path.join(__dirname, 'css'))); // Serve a pasta css
+
+// Rota para cadastrar usuários
+app.post('/cadastrar', async (req, res) => {
+    const { nome, email } = req.body;
+    try {
+        await cadastrarUsuario(nome, email);
+
+        // Redirecionamento com base no domínio do e-mail
+        if (email.endsWith('@adm.com')) {
+            res.redirect('/views/dashboardAdmin.html'); // Página de administradores
+        } else if (email.endsWith('@usuario.com')) {
+            res.redirect('/views/dashboardUsuario.html.html'); // Página de usuários
+        } else {
+            res.redirect('/views/index.html'); // Página genérica para outros domínios
+        }
+    } catch (error) {
+        res.status(500).send('Erro ao cadastrar usuário: ' + error.message);
+    }
+});
 
 // Rota para criar a sessão de checkout
 app.post('/create-checkout-session', async (req, res) => {
@@ -45,27 +71,46 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 });
 
+// Rota de busca de produtos
+app.get('/buscar-produtos', (req, res) => {
+    const termo = req.query.termo; // Termo de pesquisa enviado pelo frontend
+
+    // Consulta SQL para buscar produtos que correspondem ao termo de pesquisa
+    const query = `SELECT * FROM produtos WHERE nome LIKE ? OR categoria LIKE ?`;
+    db.query(query, [`%${termo}%`, `%${termo}%`], (error, results) => {
+        if (error) {
+            return res.status(500).send('Erro ao buscar produtos: ' + error.message);
+        }
+        res.json(results); // Retorna os resultados em JSON
+    });
+});
+
 // Rota para servir a página principal (produtos)
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'index.html')); // Atualizado para incluir a pasta views
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
 // Rota para servir a página de produtos
 app.get('/produtos', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'produtos.html')); // Atualizado para incluir a pasta views
+    res.sendFile(path.join(__dirname, 'views', 'produtos.html'));
+});
+
+// Rota para servir o formulário de cadastro
+app.get('/form', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'form.html'));
 });
 
 // Rota de sucesso
 app.get('/success', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'success.html')); // Atualizado para incluir a pasta views
+    res.sendFile(path.join(__dirname, 'views', 'success.html'));
 });
 
 // Rota de cancelamento
 app.get('/cancel', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'cancel.html')); // Atualizado para incluir a pasta views
+    res.sendFile(path.join(__dirname, 'views', 'cancel.html'));
 });
 
-const PORT = process.env.PORT || 3000;
+// Inicia o servidor
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });

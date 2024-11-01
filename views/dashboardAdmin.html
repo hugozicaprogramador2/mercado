@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/menu-adm.css">
+    <link rel="stylesheet" href="/css/adm.css">
+    <title>Perfil do Administrador</title>
+</head>
+<body>
+
+    <!-- Botão de toggle do menu -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Menu lateral -->
+    <div class="sidebar" id="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="/views/dashboardAdmin.html">Dashboard</a></li>
+            <li><a href="/views/relatorio.html">Relatórios</a></li>
+            <li><a href="/views/usuarios-cadastrados.html">Usuários Cadastrados</a></li>
+            <li><a href="/views/tabela-estoque.html">Tabela de Estoque</a></li>
+            <li><a href="/views/adicionar-produto.html">Adicionar Produtos</a></li>
+           
+        </ul>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="main-content" id="main-content">
+        <h2>Dashboard de Power BI</h2>
+        <iframe 
+            class="dashboard-embed"
+            title="Josi"
+            src="https://app.powerbi.com/view?r=eyJrIjoiYzZkNjc5NmItYTcyZS00YWE4LWE0MGQtMGZiMDExMTI2NDU3IiwidCI6ImIxMDUxYzRiLTNiOTQtNDFhYi05NDQxLWU3M2E3MjM0MmZkZCJ9"
+            allowFullScreen="true">
+        </iframe>
+    </div>
+
+    <script>
+        // Função para alternar a visibilidade da barra lateral
+        function toggleMenu() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>

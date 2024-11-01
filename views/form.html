@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/3d7100509d.js" crossorigin="anonymous"></script>
+    <title>Lista de Produtos</title>
+</head>
+<style>
+    * {
+        margin: 0;
+    }
+    body {
+        font-family: sans-serif;
+    }
+    
+    header {
+        background-color: rgb(247, 67, 67);
+        padding: 10px;
+        color: white;
+        text-align: center;
+    }
+
+    main {
+        padding: 30px 50px;
+    }
+    .card {
+        padding: 1rem;
+        margin-top: 1rem;
+        border: solid 1px;
+        border-radius: 1rem;
+    }
+    .lineInput {
+        display: grid;
+        margin-bottom: 10px;
+    }
+
+    input {
+        padding: 10px;
+        border-radius: 10px;
+        outline: 0;
+    }
+
+    button {
+        border: 0;
+        background: blue;
+        color: white;
+        padding: 8px;
+        outline: 0;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: ease-in .2s;
+    }
+    button:hover {
+        background: rgb(11, 11, 150);
+    }
+    .content {
+        margin-top: 10px;
+    }
+    table {
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+        width: 100%;
+    }
+    table th {
+        background: #e9e7e7;
+        padding: 1px 7px;
+    }
+    table th, td {
+        padding: 1px 7px;
+    }
+    .center {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <header>
+        <h1>Nativa Supermarket</h1>
+    </header> 
+
+    <main> 
+        <div class="title">
+            <h2>Produtos</h2>
+            <span>Lista de produtos da minha loja</span>
+        </div>
+        
+        <div class="card">
+            <div class="lineInput">
+                <label>Produto</label>
+                <input type="text" id="produto" placeholder="Nome do produto">
+            </div>
+            <div class="lineInput">
+                <label>Preço Unitário</label>
+                <input type="text" id="preco" placeholder="Valor unitário do produto">
+            </div>
+            <div class="lineInput">
+                <label>Quantidade</label>
+                <input type="number" id="quantidade" placeholder="Quantidade do produto" min="1" value="1">
+            </div>
+            <div class="lineInput">
+                <label>Categoria</label>
+                <input type="text" id="categoria" placeholder="Ex: Alimentos Básicos">
+            </div>
+            <button onclick="produto.adicionarItem()">Adicionar</button> <!-- Botão para adicionar à lista temporária -->
+            <button onclick="produto.salvarNoBanco()">Salvar no Banco de Dados</button> <!-- Botão para salvar todos os itens -->
+            <button onclick="produto.cancelar()">Cancelar</button>
+        </div>
+
+        <div class="card">
+            <label>Filtrar Produtos</label>
+            <input type="text" id="filtro" placeholder="Digite o nome do produto para filtrar" oninput="produto.filtrarTabela()">
+        </div>
+
+        <div class="content">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Produto</th>
+                        <th>Preço Unitário</th>
+                        <th>Quantidade</th>
+                        <th>Categoria</th>
+                        <th>Valor Total</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+            <div style="text-align: right; margin-top: 10px;">
+                <strong>Total Geral: <span id="totalGeral">R$ 0,00</span></strong>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        class Produto {
+            constructor() {
+                this.arrayProdutos = JSON.parse(localStorage.getItem('produtos')) || [];
+                this.tempProdutos = []; // Lista temporária para adicionar vários itens
+                this.id = this.arrayProdutos.length > 0 ? this.arrayProdutos[this.arrayProdutos.length - 1].id + 1 : 1;
+                this.editId = null;
+                this.listarTabela();
+            }
+
+            adicionarItem() {
+                // Lê os dados do formulário e adiciona à lista temporária
+                let produto = this.lerDados();
+
+                if (this.validaDados(produto)) {
+                    produto.id = this.id++;
+                    this.tempProdutos.push(produto);
+                    this.listarTabela(this.tempProdutos);
+                    this.cancelar();
+                } else {
+                    alert(this.msgErro);
+                }
+            }
+
+            salvarNoBanco() {
+                // Envia todos os itens da lista temporária para o banco
+                if (this.tempProdutos.length === 0) {
+                    alert("Nenhum produto para salvar.");
+                    return;
+                }
+
+                fetch('/api/produtos', { // Exemplo de endpoint
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(this.tempProdutos)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Produtos salvos com sucesso!");
+                        this.arrayProdutos = this.arrayProdutos.concat(this.tempProdutos); // Atualiza o array principal
+                        this.tempProdutos = []; // Limpa a lista temporária após salvar
+                        this.salvarLocalStorage();
+                        this.listarTabela();
+                    } else {
+                        alert("Erro ao salvar produtos.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao conectar ao servidor:", error);
+                    alert("Erro ao conectar ao servidor.");
+                });
+            }
+
+            lerDados() {
+                let produto = {};
+                produto.nomeProduto = document.getElementById('produto').value;
+                produto.preco = parseFloat(document.getElementById('preco').value);
+                produto.quantidade = parseInt(document.getElementById('quantidade').value);
+                produto.categoria = document.getElementById('categoria').value;
+                produto.valorTotal = produto.preco * produto.quantidade;
+                return produto;
+            }
+
+            listarTabela(produtosFiltrados = this.arrayProdutos) {
+                let tbody = document.getElementById('tbody');
+                tbody.innerHTML = '';
+
+                for (let i = 0; i < produtosFiltrados.length; i++) {
+                    let tr = tbody.insertRow();
+
+                    let td_id = tr.insertCell();
+                    let td_produto = tr.insertCell();
+                    let td_preco = tr.insertCell();
+                    let td_quantidade = tr.insertCell();
+                    let td_categoria = tr.insertCell();
+                    let td_valorTotal = tr.insertCell();
+                    let td_acoes = tr.insertCell();
+
+                    td_id.innerText = produtosFiltrados[i].id;
+                    td_produto.innerText = produtosFiltrados[i].nomeProduto;
+                    td_preco.innerText = `R$ ${produtosFiltrados[i].preco.toFixed(2)}`;
+                    td_quantidade.innerText = produtosFiltrados[i].quantidade;
+                    td_categoria.innerText = produtosFiltrados[i].categoria;
+                    td_valorTotal.innerText = `R$ ${produtosFiltrados[i].valorTotal.toFixed(2)}`;
+
+                    td_id.classList.add('center');
+                    td_acoes.classList.add('center');
+
+                    let imgEditar = document.createElement('i');
+                    imgEditar.className = "fa-regular fa-pen-to-square";
+                    imgEditar.style.cursor = "pointer";
+                    imgEditar.style.marginRight = "5px";
+                    imgEditar.setAttribute("onclick", `produto.editar(${produtosFiltrados[i].id})`);
+
+                    let imgExcluir = document.createElement('i');
+                    imgExcluir.className = "fas fa-trash-alt";
+                    imgExcluir.style.cursor = "pointer";
+                    imgExcluir.setAttribute("onclick", `produto.excluir(${produtosFiltrados[i].id})`);
+
+                    td_acoes.appendChild(imgEditar);
+                    td_acoes.appendChild(imgExcluir);
+                }
+
+                this.atualizarTotalGeral();
+            }
+
+            editar(id) {
+                const produto = this.arrayProdutos.find(produto => produto.id === id);
+                this.editId = id;
+
+                document.getElementById('produto').value = produto.nomeProduto;
+                document.getElementById('preco').value = produto.preco;
+                document.getElementById('quantidade').value = produto.quantidade;
+                document.getElementById('categoria').value = produto.categoria;
+            }
+
+            excluir(id) {
+                let index = this.arrayProdutos.findIndex(produto => produto.id === id);
+                if (index !== -1) {
+                    this.arrayProdutos.splice(index, 1);
+                    this.listarTabela();
+                    this.salvarLocalStorage();
+                }
+            }
+
+            cancelar() {
+                document.getElementById('produto').value = '';
+                document.getElementById('preco').value = '';
+                document.getElementById('quantidade').value = '1';
+                document.getElementById('categoria').value = '';
+                this.editId = null;
+            }
+
+            validaDados(produto) {
+                let msg = '';
+                if (produto.nomeProduto === '') {
+                    msg += '- Informe o nome do produto\n';
+                }
+                if (isNaN(produto.preco) || produto.preco <= 0) {
+                    msg += '- Informe um preço válido para o produto\n';
+                }
+                if (produto.quantidade <= 0 || isNaN(produto.quantidade)) {
+                    msg += '- Informe uma quantidade válida\n';
+                }
+                if (produto.categoria === '') {
+                    msg += '- Informe a categoria do produto\n';
+                }
+                if (msg !== '') {
+                    this.msgErro = msg;
+                    return false;
+                }
+                return true;
+            }
+
+            atualizarTotalGeral() {
+                const totalGeral = this.arrayProdutos.reduce((total, produto) => total + produto.valorTotal, 0);
+                document.getElementById('totalGeral').innerText = `R$ ${totalGeral.toFixed(2)}`;
+            }
+
+            filtrarTabela() {
+                let termoFiltro = document.getElementById('filtro').value.toLowerCase();
+                let produtosFiltrados = this.arrayProdutos.filter(produto =>
+                    produto.nomeProduto.toLowerCase().includes(termoFiltro)
+                );
+                this.listarTabela(produtosFiltrados);
+            }
+
+            salvarLocalStorage() {
+                localStorage.setItem('produtos', JSON.stringify(this.arrayProdutos));
+            }
+        }
+
+        const produto = new Produto();
+    </script>
+</body>
+</html>

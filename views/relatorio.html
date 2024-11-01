@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Relatórios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #1a237e;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+            padding-left: 15px;
+            position: fixed;
+            height: 100%;
+            transition: transform 0.3s ease;
+            z-index: 99;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff5252;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 15px 10px;
+            font-size: 16px;
+            color: #c5cae9;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #3949ab;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            background-color: #e8eaf6;
+            display: flex;
+            flex-direction: column;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content h2 {
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .report-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .report {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 400px; /* Define a altura fixa do contêiner do gráfico */
+        }
+
+        .report h3 {
+            color: #ff5252;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .report canvas {
+            width: 100%;
+            max-width: 600px;
+            height: 300px; /* Define uma altura para o canvas */
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            background-color: #ff5252;
+            color: white;
+            border: none;
+            padding: 10px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background-color: #e53935;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding-top: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <div class="sidebar" id="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="/views/dashboardAdmin.html">Dashboard</a></li>
+            <li><a href="/views/relatorio.html">Relatórios</a></li>
+            <li><a href="/views/usuarios-cadastrados.html">Usuários Cadastrados</a></li>
+            <li><a href="/views/tabela-estoque.html">Tabela de Estoque</a></li>
+            <li><a href="/views/adicionar-produto.html">Adicionar Produtos</a></li>
+            <li><a href="/views/repositorio.html">Ver Produtos</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <h2>Relatórios</h2>
+        <div class="report-container">
+            <div class="report">
+                <h3>Relatório de Vendas</h3>
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="report">
+                <h3>Relatório de Clientes</h3>
+                <canvas id="clientsChart"></canvas>
+            </div>
+            <div class="report">
+                <h3>Relatório Financeiro</h3>
+                <canvas id="financeChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function toggleMenu() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Gráfico de Barras: Vendas
+        const salesChartCtx = document.getElementById('salesChart').getContext('2d');
+        new Chart(salesChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
+                datasets: [{
+                    label: 'Vendas',
+                    data: [1200, 1900, 3000, 500, 2000],
+                    backgroundColor: '#1a237e',
+                    borderColor: '#ff5252',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+
+        // Gráfico de Linhas: Clientes
+        const clientsChartCtx = document.getElementById('clientsChart').getContext('2d');
+        new Chart(clientsChartCtx, {
+            type: 'line',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
+                datasets: [{
+                    label: 'Novos Clientes',
+                    data: [50, 60, 40, 80, 70],
+                    backgroundColor: 'rgba(26, 35, 126, 0.2)',
+                    borderColor: '#1a237e',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+
+        // Gráfico de Pizza: Financeiro
+        const financeChartCtx = document.getElementById('financeChart').getContext('2d');
+        new Chart(financeChartCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Receita', 'Despesas', 'Lucro'],
+                datasets: [{
+                    data: [5000, 3000, 2000],
+                    backgroundColor: ['#ff5252', '#1a237e', '#3949ab']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+    </script>
+
+</body>
+</html>

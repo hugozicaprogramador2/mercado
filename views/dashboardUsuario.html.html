@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Perfil</title>
+  <link rel="stylesheet" href="/css/dashboardUsuario.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Perfil de Entrega</h2>
+    
+    <!-- Foto de perfil -->
+    <div class="profile-pic">
+      <img id="profile-image" src="https://via.placeholder.com/120" alt="Foto de perfil">
+      <div class="change-photo" onclick="document.getElementById('file-input').click();">Alterar foto de perfil</div>
+      <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="updateProfileImage(event)">
+    </div>
+    
+    <!-- Formulário de informações de perfil e endereço -->
+    <form action="#" method="POST" onsubmit="salvarDados(event)">
+      <h3>Informações Pessoais</h3>
+      <input type="text" name="nome" placeholder="Nome completo" required>
+      <input type="email" name="email" placeholder="Email" required>
+
+      <h3>Endereço de Entrega</h3>
+      <input type="text" name="endereco" placeholder="Endereço" required>
+      <input type="text" name="cidade" placeholder="Cidade" required>
+      <input type="text" name="estado" placeholder="Estado" required>
+      <input type="text" name="cep" placeholder="CEP" required>
+      
+      <div class="links">
+        <a href="index.html">Salvar</a>
+    </div>
+
+    </form>
+  </div>
+  
+
+  <script src="perfil_entrega.js"></script>
+</body>
+</html>
