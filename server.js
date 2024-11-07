@@ -114,3 +114,37 @@ app.get('/cancel', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+//////////// meio para adicionar os itens ao banco de dados do huguin///////////
+
+// Conexão com o banco de dados
+const db = mysql.createConnection({
+    host: 'localhost',    // Altere conforme necessário
+    user: 'root',  // Substitua pelo seu usuário do banco de dados
+    password: '', // Substitua pela sua senha do banco de dados
+    database: 'mercado'  // Substitua pelo nome do seu banco de dados
+});
+
+db.connect((error) => {
+    if (error) {
+        console.error('Erro ao conectar ao banco de dados:', error);
+    } else {
+        console.log('Conectado ao banco de dados MySQL');
+    }
+});
+
+// Rota para adicionar um produto ao banco de dados
+app.post('/api/produtos', (req, res) => {
+    const { nome, preco, categoria, estoque } = req.body;
+
+    // Consulta SQL para inserir o produto no banco de dados
+    const query = `INSERT INTO produtos (nome, preco, categoria, estoque) VALUES (?, ?, ?, ?)`;
+    db.query(query, [nome, preco, categoria, estoque], (error, results) => {
+        if (error) {
+            return res.status(500).send('Erro ao adicionar produto: ' + error.message);
+        }
+        res.status(200).send('Produto adicionado com sucesso');
+    });
+});
+
+
